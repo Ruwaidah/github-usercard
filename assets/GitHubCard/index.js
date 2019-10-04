@@ -15,23 +15,23 @@ axios.get("https://api.github.com/users/" + followersArray[i])
 .then(response  => {
 
   console.log(response.data);
-  // if (response.data.login == "tetondan" ){
-  //   console.log(i)
-  //   let fol = response.data.followers_url;
-  //   console.log(fol)
+  if (response.data.login == "tetondan" ){
+    console.log(i)
+    let fol = response.data.followers_url;
+    console.log(fol)
 
-  //   axios.get(fol)
-  //     .then(item => {
-  //       let dataLength = item.data.length;
-  //       for (let ind = 0; ind < dataLength; ind++){
-  //       console.log(item.data[ind].login)
-  //       axios.get("https://api.github.com/users/" + item.data[ind].login)
-  //         .then(newtry => {
-  //           cards.appendChild(profile(newtry.data));
-  //         })
-  //       }
-  //     })
-  //     }
+    axios.get(fol)
+      .then(item => {
+        let dataLength = item.data.length;
+        for (let ind = 0; ind < dataLength; ind++){
+        console.log(item.data[ind].login)
+        axios.get("https://api.github.com/users/" + item.data[ind].login)
+          .then(newtry => {
+            cards.appendChild(profile(newtry.data));
+          })
+        }
+      })
+      }
   cards.appendChild(profile(response.data))
 })
 }
